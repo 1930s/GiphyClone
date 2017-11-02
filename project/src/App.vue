@@ -1,18 +1,22 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <SearchBar/>
+    <HelloWorld
+    v-bind:url='test'> 
+    </HelloWorld>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
+import SearchBar from './components/SearchBar'
 import axios from 'axios'
 
 const axiosconfig = {
   baseurl: 'http://api.giphy.com/v1/gifs/trending?api_key=rr0lC3pBzUuNytwdumVXkT8njgPd0pbQ',
   timeout: 30000,
 };
-let imageUrl = ''
+let imageUrl = 'yooo'
 
 axios.get(axiosconfig.baseurl).then((response) => {
     console.log(response)
@@ -22,9 +26,17 @@ axios.get(axiosconfig.baseurl).then((response) => {
 
 export default {
   name: 'app',
+  data() {
+    return {
+      test: {
+        text: imageUrl
+      }
+    }
+  },
   components: {
+    SearchBar,
     HelloWorld
-  }
+  },
 }
 </script>
 

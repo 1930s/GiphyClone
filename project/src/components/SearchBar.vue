@@ -1,15 +1,15 @@
 <template>
-  <div class="hello">
-    <h1>pics</h1>
-    <p>{{url}}</p>
-    <img src="https://giphy.com/embed/3o7TKo2Vs7lWIlWLKw">
+  <div class="search">
+    <input type="" name="search">
+    <button>Search</button>
   </div>
 </template>
 
-<script>  
+<script>
+
+  
 export default {
-  name: 'HelloWorld',
-  props: ['url'],
+  name: 'SearchBar',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
