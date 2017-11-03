@@ -1,14 +1,16 @@
 <template>
   <div class="image">
     <br><br>
-    <iframe width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen :src='url'></iframe>
+    <span v-for="item in items">
+      <iframe width="360" height="202.5" frameBorder="0" class="giphy-embed" :src='item.embed_url'></iframe>
+    </span>
   </div>
 </template>
 
 <script>  
 export default {
   name: 'SingleImage',
-  props: ['url'],
+  props: ['url', 'items'],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

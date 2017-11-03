@@ -2,7 +2,8 @@
   <div id="app">
     <SearchBar/>
     <SingleImage
-    v-bind:url='test'> 
+    v-bind:url='test'
+    v-bind:items='items'> 
     </SingleImage>
   </div>
 </template>
@@ -17,6 +18,7 @@ const axiosconfig = {
   timeout: 30000,
 };
 let imageUrl = ''
+let items = []
 
 export default {
   name: 'app',
@@ -24,7 +26,7 @@ export default {
     return {
       test: {
         text: imageUrl,
-        items: []
+        items: [],
       }
     }
   },
