@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <SearchBar/>
-    <HelloWorld
+    <SingleImage
     v-bind:url='test'> 
-    </HelloWorld>
+    </SingleImage>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import SingleImage from './components/SingleImage'
 import SearchBar from './components/SearchBar'
 import axios from 'axios'
 
@@ -16,27 +16,31 @@ const axiosconfig = {
   baseurl: 'http://api.giphy.com/v1/gifs/trending?api_key=rr0lC3pBzUuNytwdumVXkT8njgPd0pbQ',
   timeout: 30000,
 };
-let imageUrl = 'yooo'
-
-axios.get(axiosconfig.baseurl).then((response) => {
-    console.log(response)
-    imageUrl = response.data.data[0].url
-    console.log(imageUrl)
-})
+let imageUrl = ''
 
 export default {
   name: 'app',
   data() {
     return {
       test: {
-        text: imageUrl
+        text: imageUrl,
+        items: []
       }
     }
   },
   components: {
     SearchBar,
-    HelloWorld
+    SingleImage
   },
+  created() {
+        axios.get(axiosconfig.baseurl).then((response) => {
+            console.log(response.data.data)
+            imageUrl = response.data.data[0].embed_url
+            console.log(imageUrl)
+            this.test = imageUrl
+            this.items = response.data.data
+        })
+  }
 }
 </script>
 

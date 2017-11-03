@@ -1,14 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>pics</h1>
-    <p>{{url}}</p>
-    <img src="https://giphy.com/embed/3o7TKo2Vs7lWIlWLKw">
+  <div class="image">
+    <br><br>
+    <iframe width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen :src='url'></iframe>
   </div>
 </template>
 
 <script>  
 export default {
-  name: 'HelloWorld',
+  name: 'SingleImage',
   props: ['url'],
   data () {
     return {
