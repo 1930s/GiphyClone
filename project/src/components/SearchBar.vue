@@ -1,18 +1,23 @@
 <template>
   <div class="search">
-    <input type="" name="search">
-    <button>Search</button>
+    <input v-model="message" placeholder="edit me">
+    <button v-on:click="clickedSearch">Search</button>
+    <p>{{ message }}</p>
   </div>
 </template>
 
 <script>
-
   
 export default {
   name: 'SearchBar',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      message: ''
+    }
+  },
+  methods: {
+    clickedSearch: function(event) {
+      this.$emit('message', this.message)
     }
   }
 }

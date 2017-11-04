@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <SearchBar/>
+    <SearchBar v-on:message='getKeywordImages'>
+    </SearchBar>
     <SingleImage
     v-bind:url='test'
     v-bind:items='items'> 
@@ -15,6 +16,7 @@ import axios from 'axios'
 
 const axiosconfig = {
   baseurl: 'http://api.giphy.com/v1/gifs/trending?api_key=rr0lC3pBzUuNytwdumVXkT8njgPd0pbQ',
+  searchurl: 'http://api.giphy.com/v1/gifs/search?api_key=rr0lC3pBzUuNytwdumVXkT8njgPd0pbQ&q=',
   timeout: 30000,
 };
 let imageUrl = ''
@@ -30,16 +32,26 @@ export default {
       }
     }
   },
+  methods: {
+    getKeywordImages: function(keyword) {
+      axios.get(axiosconfig.searchurl + keyword).then((response) => {
+            console.log(response)
+            this.items = response.data.data
+        })
+    }
+  },
+  watch: {
+    items: function(){
+      this.items = this.items
+    }
+  },
   components: {
     SearchBar,
     SingleImage
   },
   created() {
         axios.get(axiosconfig.baseurl).then((response) => {
-            console.log(response.data.data)
-            imageUrl = response.data.data[0].embed_url
-            console.log(imageUrl)
-            this.test = imageUrl
+            this.test = response.data.data[0].embed_url
             this.items = response.data.data
         })
   }
