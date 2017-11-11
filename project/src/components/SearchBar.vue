@@ -1,8 +1,7 @@
 <template>
   <div class="search">
-    <input v-model="message" placeholder="edit me">
-    <button v-on:click="clickedSearch">Search</button>
-    <p>{{ message }}</p>
+    <input v-model="message" id='text' placeholder="Search">
+    <button id="btn" v-on:click="clickedSearch">&#8595;</button>
   </div>
 </template>
 
@@ -25,21 +24,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+
+input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 3px solid #ff7761;
+  font-size: 18pt;
+  color: #fff;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+button {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 18pt;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
 }
-
-a {
-  color: #42b983;
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
 }
 </style>

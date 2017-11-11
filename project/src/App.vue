@@ -3,7 +3,6 @@
     <SearchBar v-on:message='getKeywordImages'>
     </SearchBar>
     <SingleImage
-    v-bind:url='test'
     v-bind:items='items'> 
     </SingleImage>
   </div>
@@ -19,30 +18,21 @@ const axiosconfig = {
   searchurl: 'http://api.giphy.com/v1/gifs/search?api_key=rr0lC3pBzUuNytwdumVXkT8njgPd0pbQ&q=',
   timeout: 30000,
 };
-let imageUrl = ''
-let items = []
+
 
 export default {
   name: 'app',
   data() {
     return {
-      test: {
-        text: imageUrl,
+        test: '',
         items: [],
-      }
     }
   },
   methods: {
     getKeywordImages: function(keyword) {
       axios.get(axiosconfig.searchurl + keyword).then((response) => {
-            console.log(response)
             this.items = response.data.data
         })
-    }
-  },
-  watch: {
-    items: function(){
-      this.items = this.items
     }
   },
   components: {
@@ -66,5 +56,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background-color: #274555;
 }
 </style>
