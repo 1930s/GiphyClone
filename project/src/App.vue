@@ -41,7 +41,6 @@ export default {
   },
   created() {
         axios.get(axiosconfig.baseurl).then((response) => {
-            this.test = response.data.data[0].embed_url
             this.items = response.data.data
         })
   }
